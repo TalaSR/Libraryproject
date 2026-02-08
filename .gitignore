@@ -1,0 +1,7 @@
+*.log
+__pycache__
+djangoenv/
+.venv/
+db.sqlite3
+*.pyc
+.history
