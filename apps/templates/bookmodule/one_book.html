@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <title>Show one Book</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'qu-icon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="topnav">
+        <a href="{% url 'books.index' %}">Home</a>
+        <a href="{% url 'books.list_books' %}">List Books</a>
+        <a href="{% url 'books.aboutus' %}">About</a>
+    </div>
+    <br>
+    <a href="{% url 'books.list_books' %}">Go Back</a>
+    <h1>Details of Book1</h1>
+    <h2>Internet & World Wide Web How to Program</h2>
+    <img src="{% static 'book1.jpg' %}" alt="Book1" width="200" height="200">
+</body>
+</html>

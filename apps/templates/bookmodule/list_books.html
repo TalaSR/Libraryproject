@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} List of Books {% endblock title %}
+
+{% block stylesheets %}
+<style>
+    h1 { color: green; }
+    h2 { color: lightskyblue; }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <h1>List of Books</h1>
+    <a href="{% url 'books.view_one_book' bookId=123 %}"><h2>Internet & World Wide Web...</h2></a>
+    <a href="{% url 'books.view_one_book' bookId=123 %}">
+        <img src="{% static 'book1.jpg' %}" width="200" height="200">
+    </a>
+    <hr>
+    <h2>2) C++ How to Program</h2>
+    <img src="{% static 'book2.jpg' %}" width="200" height="200">
+{% endblock content %}

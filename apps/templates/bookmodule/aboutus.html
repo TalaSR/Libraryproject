@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <title>About Us</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'qu-icon.png' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="topnav">
+        <a href="{% url 'books.index' %}">Home</a>
+        <a href="{% url 'books.list_books' %}">List Books</a>
+        <a class="active" href="{% url 'books.aboutus' %}">About</a>
+    </div>
+    <h1>About us</h1>
+    <p>This is a paragraph text about our library store.</p>
+    <p>To write to <a href="mailto:email@domain.com">our store</a>, click the link.</p>
+</body>
+</html>

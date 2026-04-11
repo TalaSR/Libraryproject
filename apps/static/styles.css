@@ -1,0 +1,81 @@
+/* --- Task 1: Links and Layout Customization --- */
+.custom-link {
+    display: block;          
+    padding: 15px;           
+    margin: 10px 0;          
+    text-align: center;      
+    text-decoration: none;   
+    font-weight: bold;
+    border: 1px solid black; 
+}
+
+/* توزيع الألوان الأساسية للروابط */
+a.custom-link:nth-of-type(1) {
+    background-color: #90EE90; /* أخضر فاتح */
+    color: red;
+}
+a.custom-link:nth-of-type(2) {
+    background-color: #808080; /* رمادي */
+    color: yellow;
+}
+a.custom-link:nth-of-type(3) {
+    background-color: #000000; /* أسود */
+    color: white;
+}
+
+/* تأثيرات الماوس والضغط */
+.custom-link:hover {
+    background-color: yellow !important;
+    color: black !important;
+}
+.custom-link:active {
+    background-color: red !important;
+    color: white !important;
+}
+
+/* --- Task 2: Text Formatting --- */
+.format-header {
+    color: green;                
+    background-color: #f0f5e1;   
+    padding: 15px;               
+    border-bottom: 1px solid #ddd;
+}
+.formatting-container p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+/* --- Task 3: Nested Listing ---*/
+.listing-header {
+    color: white;                
+    background-color: #5F9EA0;   
+    padding: 15px;               
+    font-family: 'Times New Roman', serif;
+    font-size: 28px;
+    margin-top: 0;
+}
+.listing-container {
+    padding: 20px;
+    line-height: 1.6;
+}
+/* Task 4 */
+table {
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+
+table caption {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}

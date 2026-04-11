@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles.css' %}"> 
+
+<div style="padding: 20px;">
+    <h1 style="text-align: center;">Task 1: Links and Layout Customization</h1>
+    <hr>
+    <p>Click on the links below to see the different states (Hover, Visited, and Active):</p>
+    
+    <a href="https://www.qu.edu.sa" target="_blank" class="custom-link">Go to QU website (open a new tab)</a>
+    <a href="https://www.qu.edu.sa" class="custom-link">Go to QU website (open in the same page/tab)</a>
+    <a href="https://www.qu.edu.sa" class="custom-link">Go to QU website (open in the same page/tab)</a>
+</div>
+{% endblock %}
