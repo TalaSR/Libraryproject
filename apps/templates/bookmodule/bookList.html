@@ -1,12 +1,14 @@
 {% extends "layouts/base.html" %}
 {% block content %}
-    <h2>Books containing 'and':</h2>
+    <h2>Search Results:</h2> 
+    
     <ul>
         {% for obj in books %}
             <li>
                 <strong>ID:</strong> {{ obj.id }} | 
                 <strong>Title:</strong> {{ obj.title }} | 
-                <strong>Author:</strong> {{ obj.author }}
+                <strong>Author:</strong> {{ obj.author }} |
+                <strong>Price:</strong> {{ obj.price }} | <strong>Edition:</strong> {{ obj.edition }}
             </li>
             <hr>
         {% empty %}

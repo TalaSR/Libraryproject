@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Statistics</title>
+</head>
+<body>
+    <h1>Lab 8 - Task 5: Statistics</h1>
+    <table border="1" style="border-collapse: collapse; width: 50%; text-align: left;">
+        <tr>
+            <th style="padding: 10px; background-color: #f2f2f2;">Requirement</th>
+            <th style="padding: 10px; background-color: #f2f2f2;">Value</th>
+        </tr>
+        <tr><td>Number of Books</td><td>{{ stats.total_books }}</td></tr>
+        <tr><td>Total Price</td><td>{{ stats.total_price }}</td></tr>
+        <tr><td>Average Price</td><td>{{ stats.avg_price|floatformat:2 }}</td></tr>
+        <tr><td>Maximum Price</td><td>{{ stats.max_price }}</td></tr>
+        <tr><td>Minimum Price</td><td>{{ stats.min_price }}</td></tr>
+    </table>
+    <br>
+<a href="/">Back to Home</a>
+</body>
+</html>

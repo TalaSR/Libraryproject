@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Lab 9 - Task 4</title></head>
+<body>
+    <h2>Publishers Price Statistics (Avg, Min, Max)</h2>
+    <table border="1">
+        <tr>
+            <th>Publisher</th>
+            <th>Avg Price</th>
+            <th>Min Price</th>
+            <th>Max Price</th>
+        </tr>
+        {% for pub in publishers %}
+        <tr>
+            <td>{{ pub.name }}</td>
+            <td>{{ pub.avg_p|floatformat:2 }}</td>
+            <td>{{ pub.min_p }}</td>
+            <td>{{ pub.max_p }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

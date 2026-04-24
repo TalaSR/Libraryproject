@@ -1,7 +1,42 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from requests import request
-from .models import Book 
+from django.db.models import Q, Sum, Avg, Max, Min, Count
+from .models import Book, Publisher, Author, Address, Student
+from django.db.models import F, FloatField, ExpressionWrapper, Sum, Count, Avg, Min, Max
+def task1(request):
+    books = Book.objects.filter(Q(price__lte=80)) 
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+def task2(request):
+    books = Book.objects.filter(
+        Q(edition__gt=3) & (Q(title__icontains='qu') | Q(author__icontains='qu'))
+    )
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+def task3(request):
+   
+    books = Book.objects.filter(
+        ~Q(edition__gt=3) & ~(Q(title__icontains='qu') | Q(author__icontains='qu'))
+    ) 
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+def task4(request):
+    books = Book.objects.order_by('title')
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+def task5(request):
+    stats = Book.objects.aggregate(
+        total_books=Count('id'),
+        total_price=Sum('price'),
+        avg_price=Avg('price'),
+        max_price=Max('price'),
+        min_price=Min('price')
+    )
+    return render(request, 'bookmodule/bookStats.html', {'stats': stats})
+
+def task7(request):
+    cities = Address.objects.annotate(student_count=Count('student'))
+    return render(request, 'bookmodule/cityStats.html', {'cities': cities})
 
 def insert_books(request):
     obj1 = Book(title='Continuous Delivery', author='J.Humble and D. Farley', price=120.0, edition=3)
@@ -90,3 +125,41 @@ def complex_query(request):
         return render(request, 'bookmodule/bookList.html', {'books': mybooks})
     else:
         return render(request, 'bookmodule/index.html') 
+
+# Lab 9 Tasks: Advanced Aggregation & Annotation
+
+def lab9_task1(request):
+    
+    books = Book.objects.annotate(
+        availability=ExpressionWrapper(F('quantity') * 1.0 / 100 * 100, output_field=FloatField())
+    )
+    return render(request, 'bookmodule/lab9_task1.html', {'books': books})
+
+def lab9_task2(request):
+    publishers = Publisher.objects.annotate(total_stock=Sum('book__quantity'))
+    return render(request, 'bookmodule/lab9_task2.html', {'publishers': publishers})
+
+def lab9_task3(request):
+    publishers = Publisher.objects.annotate(oldest_book_date=Min('book__pubdate'))
+    return render(request, 'bookmodule/lab9_task3.html', {'publishers': publishers})
+
+def lab9_task4(request):
+    publishers = Publisher.objects.annotate(
+        avg_p=Avg('book__price'), 
+        min_p=Min('book__price'), 
+        max_p=Max('book__price')
+    )
+    return render(request, 'bookmodule/lab9_task4.html', {'publishers': publishers})
+
+def lab9_task5(request):
+    publishers = Publisher.objects.filter(book__rating__gt=4).annotate(high_rated_count=Count('book'))
+    return render(request, 'bookmodule/lab9_task5.html', {'publishers': publishers})
+
+def lab9_task6(request):
+    
+    publishers = Publisher.objects.filter(
+        book__price__gt=50, 
+        book__quantity__lt=5, 
+        book__quantity__gte=1
+    ).annotate(total_books=Count('book'))
+    return render(request, 'bookmodule/lab9_task6.html', {'publishers': publishers})

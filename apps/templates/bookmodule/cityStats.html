@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>City Statistics</title>
+</head>
+<body>
+    <h1>Lab 8 - Task 7: Students per City</h1>
+    <table border="1" style="width: 50%; border-collapse: collapse;">
+        <tr style="background-color: #f2f2f2;">
+            <th style="padding: 10px;">City Name</th>
+            <th style="padding: 10px;">Number of Students</th>
+        </tr>
+        {% for city in cities %}
+        <tr>
+            <td style="padding: 8px;">{{ city.city }}</td>
+            <td style="padding: 8px;">{{ city.student_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

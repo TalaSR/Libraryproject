@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 9 - Task 5</title>
+</head>
+<body>
+    <h2>Publishers with High Rated Books (> 4)</h2>
+    <table border="1">
+        <tr>
+            <th>Publisher Name</th>
+            <th>Number of High Rated Books</th>
+        </tr>
+        {% for pub in publishers %}
+        <tr>
+            <td>{{ pub.name }}</td>
+            <td>{{ pub.high_rated_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/books/lab9/task4">Back to Task 4</a>
+</body>
+</html>
