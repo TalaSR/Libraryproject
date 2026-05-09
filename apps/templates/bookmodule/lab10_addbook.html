@@ -1,0 +1,13 @@
+<h2>Add a New Book</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Book Title:</label>
+    <input type="text" name="title" required><br><br>
+    
+    <label>Author:</label>
+    <input type="text" name="author" required><br><br>
+    
+    <button type="submit">Save Book</button>
+</form>
+<br>
+<a href="{% url 'lab10_listbooks' %}">Back to List</a>

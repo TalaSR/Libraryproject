@@ -1,0 +1,19 @@
+<h2>Books List (Part 2)</h2>
+<a href="{% url 'lab10_addbook_p2' %}">Add New Book</a>
+<table border="1">
+    <tr> 
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td> 
+        <td>
+            <a href="{% url 'lab10_editbook_p2' book.id %}">Edit</a> | 
+            <a href="{% url 'lab10_deletebook_p2' book.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

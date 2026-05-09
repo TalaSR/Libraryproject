@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.bookmodule', 
     'apps.usermodule', 
+    'cyber_project',
 ]
 
 MIDDLEWARE = [
@@ -86,3 +87,11 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "apps/static"),
+    os.path.join(BASE_DIR, "cyber_project/static"), 
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

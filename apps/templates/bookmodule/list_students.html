@@ -1,0 +1,21 @@
+<h2>Students List</h2>
+<a href="{% url 'add_student' %}">Add New Student</a>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.age }}</td>
+        <td>{{ s.address }}</td>
+        <td>
+            <a href="{% url 'update_student' s.id %}">Edit</a> | 
+            <a href="{% url 'delete_student' s.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

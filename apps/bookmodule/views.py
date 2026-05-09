@@ -1,8 +1,156 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.db.models import Q, Sum, Avg, Max, Min, Count
-from .models import Book, Publisher, Author, Address, Student
-from django.db.models import F, FloatField, ExpressionWrapper, Sum, Count, Avg, Min, Max
+from django.db.models import Q, Sum, Avg, Max, Min, Count, F, FloatField, ExpressionWrapper
+from .models import Book, Publisher, Author, Address, Student, Student2, Address2
+from .forms import BookForm, StudentForm, StudentForm2
+from .forms import StudentProfileForm
+from .models import StudentProfile
+
+def list_students(request):
+    students = Student.objects.all()
+    return render(request, 'bookmodule/list_students.html', {'students': students})
+
+def add_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_students')
+    else:
+        form = StudentForm()
+    return render(request, 'bookmodule/student_form.html', {'form': form, 'title': 'Add Student'})
+
+def update_student(request, id):
+    student = Student.objects.get(id=id) 
+    form = StudentForm(request.POST or None, instance=student)
+    if form.is_valid():
+        form.save()
+        return redirect('list_students')
+    return render(request, 'bookmodule/student_form.html', {'form': form, 'title': 'Update Student'})
+
+def delete_student(request, id):
+    student = Student.objects.get(id=id)
+    student.delete()
+    return redirect('list_students')
+
+def list_students2(request):
+    students = Student2.objects.all()
+    return render(request, 'bookmodule/list_students2.html', {'students': students})
+
+def add_student2(request):
+    if request.method == 'POST':
+        form = StudentForm2(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_students2')
+    else:
+        form = StudentForm2()
+    return render(request, 'bookmodule/student_form.html', {'form': form})
+
+
+
+def add_profile(request):
+    if request.method == 'POST':
+        form = StudentProfileForm(request.POST, request.FILES) 
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Image Uploaded Successfully!")
+    else:
+        form = StudentProfileForm()
+    return render(request, 'bookmodule/add_profile.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+def lab10_listbooks(request):
+    books = Book.objects.all() 
+    return render(request, 'bookmodule/lab10_listbooks.html', {'books': books})
+
+def lab10_addbook(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        new_book = Book(title=title, author=author)
+        new_book.save()
+        return redirect('lab10_listbooks')
+    
+    return render(request, 'bookmodule/lab10_addbook.html')
+
+def lab10_deletebook(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('lab10_listbooks')
+
+
+def lab10_editbook(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == 'POST':
+        book.title = request.POST.get('title')
+        book.author = request.POST.get('author')
+        book.save() 
+        return redirect('lab10_listbooks')
+    
+    return render(request, 'bookmodule/lab10_editbook.html', {'obj': book})
+
+
+
+
+## part2 
+
+def lab10_listbooks_p2(request):
+    books = Book.objects.all()
+    return render(request, 'bookmodule/lab10_listbooks_p2.html', {'books': books})
+
+def lab10_addbook_p2(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid(): 
+            form.save()
+            return redirect('lab10_listbooks_p2')
+    else:
+        form = BookForm()
+    return render(request, 'bookmodule/lab10_addbook_p2.html', {'form': form})
+
+def lab10_editbook_p2(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book) 
+        if form.is_valid():
+            form.save()
+            return redirect('lab10_listbooks_p2')
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'bookmodule/lab10_editbook_p2.html', {'form': form})
+
+def lab10_deletebook_p2(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('lab10_listbooks_p2')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def task1(request):
     books = Book.objects.filter(Q(price__lte=80)) 
     return render(request, 'bookmodule/bookList.html', {'books': books})

@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', include('apps.bookmodule.urls')), # هذا السطر مكانه هنا فقط
     path('users/', include('apps.usermodule.urls')),
+    path('cyber/', include('cyber_project.urls')),
 ]

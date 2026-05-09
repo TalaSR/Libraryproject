@@ -1,0 +1,14 @@
+<h2>Edit Book</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Book Title:</label>
+    
+    <input type="text" name="title" value="{{obj.title}}" required><br><br>
+    
+    <label>Author:</label>
+    <input type="text" name="author" value="{{obj.author}}" required><br><br>
+    
+    <button type="submit">Update Book</button>
+</form>
+<br>
+<a href="{% url 'lab10_listbooks' %}">Cancel</a>

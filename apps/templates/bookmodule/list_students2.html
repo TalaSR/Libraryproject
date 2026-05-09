@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students List (Many-to-Many)</title>
+    <style>
+        table { width: 80%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .address-tag { 
+            background-color: #e1f5fe; 
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            margin-right: 5px; 
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Task 2: Students & Addresses (Many-to-Many)</h2>
+    
+    <a href="{% url 'add_student2' %}" style="padding: 10px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">
+        + Add New Student (M2M)
+    </a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Age</th>
+                <th>Addresses (Multiple)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.age }}</td>
+                <td>
+                    {% for addr in s.addresses.all %}
+                        <span class="address-tag">{{ addr }}</span>
+                        {% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        <span style="color: red;">No addresses assigned</span>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No students found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'list_students' %}">Back to Task 1 (One-to-One)</a>
+
+</body>
+</html>

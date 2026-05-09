@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Awareness Dashboard</title>
+    
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; }
+        .card { background-color: #161b22; border: 1px solid #30363d; color: white; }
+        .stat-number { font-size: 3rem; color: #238636; font-weight: bold; }
+        .navbar { background-color: #010409 !important; border-bottom: 1px solid #30363d; }
+        .navbar-brand { font-weight: bold; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand text-success font-monospace" href="#">DASHBOARD</a>
+            <div class="d-flex">
+                <a href="{% url 'threat_list' %}" class="btn btn-outline-success btn-sm me-2">Encyclopedia</a>
+                <a href="{% url 'security_tips' %}" class="btn btn-outline-info btn-sm">Security Tips</a>
+                <a href="{% url 'cyber_analytics' %}" class="btn btn-outline-warning btn-sm">Analytics</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center py-5">
+        <h1 class="mb-4">Cyber Awareness Hub</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <h3>Registered Threats</h3>
+                    <div class="stat-number">{{ total_threats }}</div>
+                    <p class="text-secondary small">Total security risks analyzed in our database.</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <p class="lead text-info">Protecting your digital presence, one byte at a time.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
