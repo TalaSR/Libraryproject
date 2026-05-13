@@ -47,5 +47,8 @@ urlpatterns = [
     path('students2/', views.list_students2, name='list_students2'),
     path('students2/add/', views.add_student2, name='add_student2'),
     path('add_profile/', views.add_profile, name='add_profile'),
+
+
+   
 ]
 

@@ -5,6 +5,9 @@ from .models import Book, Publisher, Author, Address, Student, Student2, Address
 from .forms import BookForm, StudentForm, StudentForm2
 from .forms import StudentProfileForm
 from .models import StudentProfile
+from django.contrib.auth.decorators import login_required 
+
+@login_required(login_url='/users/login/')  #task4
 
 def list_students(request):
     students = Student.objects.all()
@@ -58,18 +61,6 @@ def add_profile(request):
     else:
         form = StudentProfileForm()
     return render(request, 'bookmodule/add_profile.html', {'form': form})
-
-
-
-
-
-
-
-
-
-
-
-
 
 def lab10_listbooks(request):
     books = Book.objects.all() 

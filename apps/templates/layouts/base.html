@@ -7,12 +7,37 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}"> 
     {% block stylesheets %}{% endblock stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
 </head>
 <body>
     {% include "includes/header.html" %}
 
     <div style="padding: 20px;">
+        <div style="margin-bottom: 20px; text-align: right;">
+            {% if user.is_authenticated %}
+                <span>Welcome, <strong>{{ user.username }}</strong>! | </span>
+                <a href="{% url 'logout' %}" style="color: red; text-decoration: none;">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a> | 
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+
+        <hr>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div style="padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: #155724; background-color: #d4edda; border-color: #c3e6cb;">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div style="padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: #721c24; background-color: #f8d7da; border-color: #f5c6cb;">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
         {% block content %} 
         {% endblock content %}
     </div>
